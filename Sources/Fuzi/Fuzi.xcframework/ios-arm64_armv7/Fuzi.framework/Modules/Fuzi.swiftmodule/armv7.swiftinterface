@@ -1,0 +1,288 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5.2 (swiftlang-1300.0.47.5 clang-1300.0.29.30)
+// swift-module-flags: -target armv7-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name Fuzi
+import Foundation
+@_exported import Fuzi
+import Swift
+import _Concurrency
+import libxml2
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers open class XMLElement : Fuzi.XMLNode {
+  open var namespace: Swift.String? {
+    get
+  }
+  open var tag: Swift.String? {
+    get
+  }
+  open var attributes: [Swift.String : Swift.String] {
+    get
+  }
+  open func attr(_ name: Swift.String, namespace ns: Swift.String? = nil) -> Swift.String?
+  open var children: [Fuzi.XMLElement] {
+    get
+  }
+  open func childNodes(ofTypes types: [Fuzi.XMLNodeType]) -> [Fuzi.XMLNode]
+  open func firstChild(tag: Fuzi.XMLCharsComparable, inNamespace ns: Fuzi.XMLCharsComparable? = nil) -> Fuzi.XMLElement?
+  open func firstChild(staticTag tag: Swift.StaticString, inNamespace ns: Swift.StaticString? = nil) -> Fuzi.XMLElement?
+  open func children(tag: Fuzi.XMLCharsComparable, inNamespace ns: Fuzi.XMLCharsComparable? = nil) -> [Fuzi.XMLElement]
+  open func children(staticTag tag: Swift.StaticString, inNamespace ns: Swift.StaticString? = nil) -> [Fuzi.XMLElement]
+  open var isBlank: Swift.Bool {
+    get
+  }
+  open var numberValue: Foundation.NSNumber? {
+    get
+  }
+  open var dateValue: Foundation.Date? {
+    get
+  }
+  open subscript(idx: Swift.Int) -> Fuzi.XMLElement? {
+    get
+  }
+  open subscript(name: Swift.String) -> Swift.String? {
+    get
+  }
+  @objc deinit
+}
+public typealias XMLNodeType = libxml2.xmlElementType
+extension libxml2.xmlElementType {
+  public static var Element: libxml2.xmlElementType {
+    get
+  }
+  public static var Attribute: libxml2.xmlElementType {
+    get
+  }
+  public static var Text: libxml2.xmlElementType {
+    get
+  }
+  public static var CDataSection: libxml2.xmlElementType {
+    get
+  }
+  public static var EntityRef: libxml2.xmlElementType {
+    get
+  }
+  public static var Entity: libxml2.xmlElementType {
+    get
+  }
+  public static var Pi: libxml2.xmlElementType {
+    get
+  }
+  public static var Comment: libxml2.xmlElementType {
+    get
+  }
+  public static var Document: libxml2.xmlElementType {
+    get
+  }
+  public static var DocumentType: libxml2.xmlElementType {
+    get
+  }
+  public static var DocumentFrag: libxml2.xmlElementType {
+    get
+  }
+  public static var Notation: libxml2.xmlElementType {
+    get
+  }
+  public static var HtmlDocument: libxml2.xmlElementType {
+    get
+  }
+  public static var DTD: libxml2.xmlElementType {
+    get
+  }
+  public static var ElementDecl: libxml2.xmlElementType {
+    get
+  }
+  public static var AttributeDecl: libxml2.xmlElementType {
+    get
+  }
+  public static var EntityDecl: libxml2.xmlElementType {
+    get
+  }
+  public static var NamespaceDecl: libxml2.xmlElementType {
+    get
+  }
+  public static var XIncludeStart: libxml2.xmlElementType {
+    get
+  }
+  public static var XIncludeEnd: libxml2.xmlElementType {
+    get
+  }
+  public static var DocbDocument: libxml2.xmlElementType {
+    get
+  }
+}
+infix operator ~= : DefaultPrecedence
+public func ~= (lhs: Fuzi.XMLNodeType, rhs: Fuzi.XMLNodeType) -> Swift.Bool
+@_hasMissingDesignatedInitializers open class XMLNode {
+  unowned final public let document: Fuzi.XMLDocument
+  open var type: Fuzi.XMLNodeType {
+    get
+  }
+  open var lineNumber: Swift.Int {
+    get
+  }
+  open var parent: Fuzi.XMLElement? {
+    get
+  }
+  open var previousSibling: Fuzi.XMLElement? {
+    get
+  }
+  open var nextSibling: Fuzi.XMLElement? {
+    get
+  }
+  open var isHTML: Swift.Bool {
+    get
+  }
+  open var stringValue: Swift.String {
+    get
+  }
+  open var rawXML: Swift.String {
+    get
+  }
+  open func toElement() -> Fuzi.XMLElement?
+  @objc deinit
+}
+extension Fuzi.XMLNode : Swift.Equatable {
+}
+public func == (lhs: Fuzi.XMLNode, rhs: Fuzi.XMLNode) -> Swift.Bool
+@_hasMissingDesignatedInitializers open class NodeSet : Swift.Collection {
+  public typealias Index = Swift.Int
+  public typealias IndexDistance = Swift.Int
+  open func next() -> Fuzi.XMLElement?
+  open var count: Swift.Int {
+    get
+  }
+  open var first: Fuzi.XMLElement? {
+    get
+  }
+  open var isEmpty: Swift.Bool {
+    get
+  }
+  open var startIndex: Fuzi.NodeSet.Index {
+    get
+  }
+  open var endIndex: Fuzi.NodeSet.Index {
+    get
+  }
+  open subscript(idx: Fuzi.NodeSet.Index) -> Fuzi.XMLElement {
+    get
+  }
+  open func index(after idx: Fuzi.NodeSet.Index) -> Fuzi.NodeSet.Index
+  public typealias Element = Fuzi.XMLElement
+  public typealias Indices = Swift.DefaultIndices<Fuzi.NodeSet>
+  public typealias Iterator = Swift.IndexingIterator<Fuzi.NodeSet>
+  public typealias SubSequence = Swift.Slice<Fuzi.NodeSet>
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers open class XPathNodeSet : Fuzi.NodeSet {
+  public static let emptySet: Fuzi.XPathNodeSet
+  @objc deinit
+}
+public enum XMLError : Swift.Error {
+  case noError
+  case libXMLError(code: Swift.Int, message: Swift.String)
+  case invalidData
+  case parserFailure
+  case xpathError(code: Swift.Int)
+}
+@_hasMissingDesignatedInitializers open class XMLDocument {
+  open var version: Swift.String? {
+    get
+  }
+  open var encoding: Swift.String.Encoding {
+    get
+  }
+  open var root: Fuzi.XMLElement? {
+    get
+  }
+  open var numberFormatter: Foundation.NumberFormatter {
+    get
+    set
+  }
+  open var dateFormatter: Foundation.DateFormatter {
+    get
+    set
+  }
+  convenience public init(string: Swift.String, encoding: Swift.String.Encoding = String.Encoding.utf8) throws
+  convenience public init(data: Foundation.Data) throws
+  convenience public init(cChars: [Swift.CChar]) throws
+  convenience public init(buffer: Swift.UnsafeBufferPointer<Swift.Int8>) throws
+  @objc deinit
+  open func definePrefix(_ prefix: Swift.String, forNamespace ns: Swift.String)
+  @available(*, deprecated, renamed: "definePrefix(_:forNamespace:)", message: "This API will be removed in version 4.")
+  open func definePrefix(_ prefix: Swift.String, defaultNamespace ns: Swift.String)
+}
+extension Fuzi.XMLDocument : Swift.Equatable {
+}
+public func == (lhs: Fuzi.XMLDocument, rhs: Fuzi.XMLDocument) -> Swift.Bool
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers open class HTMLDocument : Fuzi.XMLDocument {
+  open var title: Swift.String? {
+    get
+  }
+  open var head: Fuzi.XMLElement? {
+    get
+  }
+  open var body: Fuzi.XMLElement? {
+    get
+  }
+  @objc deinit
+}
+extension Fuzi.XMLNode : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension Fuzi.XMLDocument : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+public protocol XMLCharsComparable {
+  func caseInsensitivelyEqual(to other: Swift.UnsafePointer<libxml2.xmlChar>) -> Swift.Bool
+}
+extension Swift.String : Fuzi.XMLCharsComparable {
+  public func caseInsensitivelyEqual(to other: Swift.UnsafePointer<libxml2.xmlChar>) -> Swift.Bool
+}
+extension Swift.StaticString : Fuzi.XMLCharsComparable {
+  public func caseInsensitivelyEqual(to other: Swift.UnsafePointer<libxml2.xmlChar>) -> Swift.Bool
+}
+prefix operator ^-^
+public protocol Queryable {
+  func xpath(_ xpath: Swift.String) -> Fuzi.NodeSet
+  func tryXPath(_ xpath: Swift.String) throws -> Fuzi.NodeSet
+  func firstChild(xpath: Swift.String) -> Fuzi.XMLElement?
+  func css(_ css: Swift.String) -> Fuzi.NodeSet
+  func firstChild(css: Swift.String) -> Fuzi.XMLElement?
+  func eval(xpath: Swift.String) -> Fuzi.XPathFunctionResult?
+}
+@_hasMissingDesignatedInitializers open class XPathFunctionResult {
+  open var boolValue: Swift.Bool {
+    get
+  }
+  open var doubleValue: Swift.Double {
+    get
+  }
+  open var stringValue: Swift.String {
+    get
+  }
+  @objc deinit
+}
+extension Fuzi.XMLDocument : Fuzi.Queryable {
+  public func xpath(_ xpath: Swift.String) -> Fuzi.NodeSet
+  public func tryXPath(_ xpath: Swift.String) throws -> Fuzi.NodeSet
+  public func firstChild(xpath: Swift.String) -> Fuzi.XMLElement?
+  public func css(_ css: Swift.String) -> Fuzi.NodeSet
+  public func firstChild(css: Swift.String) -> Fuzi.XMLElement?
+  public func eval(xpath: Swift.String) -> Fuzi.XPathFunctionResult?
+}
+extension Fuzi.XMLElement : Fuzi.Queryable {
+  public func xpath(_ xpath: Swift.String) -> Fuzi.NodeSet
+  public func tryXPath(_ xpath: Swift.String) throws -> Fuzi.NodeSet
+  public func firstChild(xpath: Swift.String) -> Fuzi.XMLElement?
+  public func css(_ css: Swift.String) -> Fuzi.NodeSet
+  public func firstChild(css: Swift.String) -> Fuzi.XMLElement?
+  public func eval(xpath: Swift.String) -> Fuzi.XPathFunctionResult?
+}
